@@ -1,0 +1,234 @@
+    /* 确保导航栏始终处于最顶层 */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .tm-col-right {
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .tm-container {
+        padding-top: 70px;
+    }
+
+    .list-group-item img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+
+
+    .list-group-item {
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .list-group-item h5,
+    .list-group-item p {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+
+
+    /* 热门帖子模块自适应宽度 */
+    #hotPosts {
+        width: 100%;
+
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .col-md-8 {
+            width: 100%;
+        }
+    }
+
+
+    /* 热门帖子模块样式 */
+    #hotPosts {
+        background-color: rgba(255, 255, 255, 0.1);
+        /* 半透明白色底纹 */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        /* 半透明白色边框 */
+        border-radius: 8px;
+        /* 圆角 */
+        padding: 15px;
+        /* 内边距 */
+        margin-bottom: 20px;
+        /* 底部外边距 */
+    }
+
+    #hotPosts .list-group-item {
+        background-color: transparent;
+        /* 每个帖子项的背景透明 */
+        color: white;
+        /* 字体颜色为白色 */
+        border: none;
+        /* 移除边框 */
+        margin-bottom: 10px;
+        /* 帖子项之间的间距 */
+        border-radius: 8px;
+        /* 圆角 */
+        padding: 10px;
+        /* 内边距 */
+    }
+
+    #hotPosts .list-group-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        /* 鼠标悬停时的半透明背景 */
+    }
+
+    #hotPosts .list-group-item h5,
+    #hotPosts .list-group-item p,
+    #hotPosts .list-group-item small {
+        color: white;
+        /* 标题、内容和时间戳的字体颜色为白色 */
+    }
+
+    /* 用户社交照片模块样式 */
+
+
+
+    /* 活跃用户模块样式 */
+    #activeUsers {
+        background-color: rgba(255, 255, 255, 0.1);
+        /* 半透明白色底纹 */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        /* 半透明白色边框 */
+        border-radius: 8px;
+        /* 圆角 */
+        padding: 15px;
+        /* 内边距 */
+        margin-bottom: 20px;
+        /* 底部外边距 */
+    }
+
+    #activeUsers .list-group-item {
+        background-color: transparent;
+        /* 每个用户项的背景透明 */
+        color: white;
+        /* 字体颜色为白色 */
+        border: none;
+        /* 移除边框 */
+        margin-bottom: 10px;
+        /* 用户项之间的间距 */
+        border-radius: 8px;
+        /* 圆角 */
+        padding: 10px;
+        /* 内边距 */
+    }
+
+    #activeUsers .list-group-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        /* 鼠标悬停时的半透明背景 */
+    }
+
+    /*ins样式*/
+    #socialPhotos {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+}
+
+.social-photo-item {
+width: 100%; /* 宽度自适应 */
+height: auto; /* 高度自动 */
+position: relative;
+display: block;
+overflow: hidden;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease;
+padding: 2px; /* 缩小内边距 */
+margin: 2px; /* 缩小外边距 */
+}
+
+.social-photo-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 8px;
+transition: filter 0.3s ease;
+}
+
+.social-photo-item:hover img {
+filter: brightness(0.8);
+}
+
+.social-photo-item:hover {
+transform: scale(1.02);
+}
+
+.photo-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+background: rgba(0, 0, 0, 0.5);
+border-radius: 0 0 8px 8px;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.social-photo-item:hover .photo-overlay {
+opacity: 1;
+}
+
+.photo-overlay i {
+font-size: 18px;
+color: white;
+}
+
+/* 增加移动端响应式设计 */
+@media (max-width: 768px) {
+.social-photo-item {
+    width: 100%; /* 在小屏幕上设置为全宽 */
+    height: 100%; /* 设置一个较大的高度 */
+    margin: 2px auto; /* 居中显示并增加间距 */
+}
+
+#socialPhotos {
+    gap: 1px; /* 减小间距以适应移动端 */
+    justify-content: center;
+    padding: 0%;
+}
+.col-5{
+    padding: 0%;
+}
+}
+
+@media (min-width: 768px) {
+.social-photo-item {
+    width: 200px; /* 在大屏幕上设置较大的宽度 */
+    height: 150px; /* 长方形高度 */
+    padding: 2px; /* 缩小内边距 */
+}
+}
+
+.photo-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+background: rgba(0, 0, 0, 0.5);
+border-radius: 0 0 8px 8px;
+opacity: 0;
+transition: opacity 0.3s ease;
+padding: 4px; /* 修改内边距为更小的值 */
+}
+
+.social-photo-item:hover .photo-overlay {
+opacity: 1;
+}

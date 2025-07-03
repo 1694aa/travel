@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速旅行</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" /> <!-- https://getbootstrap.com/ -->
+    <link href="fontawesome/css/all.min.css" rel="stylesheet" /> <!-- https://fontawesome.com/ -->
+    <link href="css/templatemo-diagoona.css" rel="stylesheet" />
+
+    <style>
+        /* 确保导航栏始终处于最顶层 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+    
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    
+    
+        }
+    
+        .tm-col-right {
+            width: 100%;
+            /* 确保宽度足够 */
+            max-width: 850px;
+            /* 设置最大宽度 */
+            margin: 0 auto;
+            /* 居中 */
+        }
+    
+        /* 为内容区域添加内边距，避免被导航栏遮盖 */
+        .tm-container {
+            padding-top: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="adcenter"><script src="http://www.mobancss.com/include/new/ggad2_728x90.js"></script></div>
+    <div class="tm-container">
+        <div>
+            <div class="tm-row pt-4">
+                <div class="tm-col-left">
+                    <div class="tm-site-header media">
+                        <img src="img/logo.png" alt="" style="width: 180px;">
+                    </div>
+                </div>
+                <div class="tm-col-right">
+                    <nav class="navbar navbar-expand-lg" id="tm-main-nav">
+                        <button class="navbar-toggler toggler-example mr-0 ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span><i class="fas fa-bars"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
+                            <ul class="navbar-nav text-uppercase">
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="index.html">首页</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link tm-nav-link" href="#">快速旅行 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="services.html">定制线路</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="contact.html">热门线路</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="community.html">出行社区</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="login.html">登录注册</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="tm-row">
+                <div class="tm-col-left"></div>
+                <main class="tm-col-right">
+                    <section class="tm-content">
+                        <h2 class="mb-5 tm-content-title">快速生成旅行计划及行程</h2>
+                        <div class="mb-5">
+                            <p class="mb-3">1. 选择您的旅行目的地</p>
+                            <p class="mb-3">2. 选择您的行程期限</p>
+                            <p class="mb-3">3. 调整您的生成项目</p>
+                            <p class="mb-3">4. 支付后即可开始行程</p>
+                        </div>
+                        <!-- 按钮触发模态框 -->
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#travelModal">
+                            生成计划
+                        </button>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <div class="tm-row">
+            <div class="tm-col-left text-center">
+                <ul class="tm-bg-controls-wrapper">
+                    <li class="tm-bg-control active" data-id="0"></li>
+                    <li class="tm-bg-control" data-id="1"></li>
+                    <li class="tm-bg-control" data-id="2"></li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <!-- Diagonal background design -->
+        <div class="tm-bg">
+            <div class="tm-bg-left"></div>
+            <div class="tm-bg-right"></div>
+        </div>
+    </div>
+
+    
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const budgetSlider = document.getElementById("budget");
+    const budgetValue = document.getElementById("budgetValue");
+
+    // 更新滑动条的值
+    budgetSlider.addEventListener("input", function () {
+        budgetValue.textContent = `当前预算：${budgetSlider.value} 元`;
+    });
+
+    // 提交按钮的逻辑
+    const submitButton = document.getElementById("submitTravelPlan");
+    const travelPlanForm = document.getElementById("travelPlanForm");
+    const travelModal = document.getElementById("travelModal");
+
+    submitButton.addEventListener("click", function () {
+        if (travelPlanForm.checkValidity()) {
+            const formData = new FormData(travelPlanForm);
+            const destination = formData.get("destination");
+            const numOfPeople = formData.get("numOfPeople");
+            const duration = formData.get("duration");
+            const preference = formData.get("preference");
+            const budget = formData.get("budget");
+
+            console.log("旅行计划：");
+            console.log(`目的地：${destination}`);
+            console.log(`人数：${numOfPeople}`);
+            console.log(`行程期限：${duration}天`);
+            console.log(`偏好：${preference}`);
+            console.log(`预算：${budget}`);
+
+            // 构造 URL 参数
+            const queryParams = new URLSearchParams({
+                    destination: destination,
+                    numOfPeople: numOfPeople,
+                    duration: duration,
+                    preference: preference,
+                    budget: budget
+                }).toString();
+
+                // 跳转到 services.html 并传递参数
+                window.location.href = `services.html?${queryParams}`;
+
+            // 关闭模态框（兼容 Bootstrap 4）
+            $('#travelModal').modal('hide');
+        } else {
+            travelPlanForm.reportValidity();
+        }
+    });
+});
+    </script>
+</body>
+<!-- 模态框 -->
+<div class="modal fade" id="travelModal" tabindex="-1" role="dialog" aria-labelledby="travelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="travelModalLabel" style="color: black;">填写旅行信息</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="travelPlanForm" class="row">
+                    <!-- 第一行 -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="destination" style="color: black;">旅行目的地：</label>
+                            <select id="destination" class="form-control" name="destination" style="color: black;height: auto;" required>
+                                <option value="中国云南省大理白族自治州">中国云南省大理白族自治州</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numOfPeople" style="color: black;">旅行人数(人)：</label>
+                            <select id="numOfPeople" class="form-control" name="numOfPeople" style="color: black;height: auto;" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 第二行 -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="duration" style="color: black;">行程期限(天)：</label>
+                            <select id="duration" class="form-control" name="duration" style="color: black;height: auto;" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="preference" style="color: black;">旅行偏好：</label>
+                            <select id="preference" class="form-control" name="preference" style="color: black;height: auto;" required>
+                                <option value="城市观光">城市观光</option>
+                                <option value="自然风景">自然风景</option>
+                                <option value="风土人情">风土人情</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 滑动条部分保持不变 -->
+                    <div class="form-group col-md-12">
+                        <label for="budget" style="color: black;">每天的预算范围（300元 - 2100元）：</label>
+                        <input type="range" id="budget" class="form-control-range" name="budget" min="300" max="2100" step="100" value="300" required>
+                        <output for="budget" id="budgetValue" style="color: black;">当前预算：300 元</output>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="submitTravelPlan">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

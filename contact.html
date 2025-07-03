@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vamos</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="css/templatemo-diagoona.css" rel="stylesheet" />
+    <style>
+        
+        
+                /* 确保导航栏始终处于最顶层 */
+            .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+           
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+            
+            
+        }
+
+        .tm-col-right {
+    width: 100%; /* 确保宽度足够 */
+    max-width: 850px; /* 设置最大宽度 */
+    margin: 0 auto; /* 居中 */
+}
+
+        /* 为内容区域添加内边距，避免被导航栏遮盖 */
+        .tm-container {
+            padding-top: 70px;
+        }
+
+        
+
+        
+
+        /* 定义时间线容器的样式 */
+        .timeline {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            height: auto;
+        }
+
+        /* 单个时间线项的样式 */
+        .timeline-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 15%;
+            text-align: center;
+            z-index: 1;
+            padding-top: 15px;
+        }
+
+        /* 时间线项的圆点样式 */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            transform: translateY(50%);
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: #007bff;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* 时间线项中的内容样式 */
+        .timeline-item .meal, .timeline-item .event, .timeline-item .price {
+            margin: 5px 0;
+        }
+
+        /* 删除按钮的样式 */
+        .timeline-item .delete-btn {
+            cursor: pointer;
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 20%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-item {
+                width: 30%;
+            }
+        }
+
+        /* 保存按钮的样式 */
+        .save-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 保存按钮的悬停样式 */
+        .save-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 确保导航栏始终处于最顶层 */
+        .tm-nav {
+            position: relative;
+            z-index: 99;
+        }
+
+        /* 确保导航项可点击且不会被遮盖 */
+        .nav-link.tm-nav-link {
+            position: relative;
+            z-index: 99;
+        }
+
+        .day-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 图片和标题之间的间距 */
+    border: 2px solid #0b0b0b; /* 添加蓝色边框 */
+    padding: 10px; /* 添加内边距 */
+    border-radius: 10px; /* 添加圆角效果 */
+    background-color: rgba(105, 70, 70, 0.5); /* 添加背景色 */
+    width: 100%; /* 宽度自动适配 */
+    box-sizing: border-box; /* 确保边框和内边距包含在宽度内 */
+}
+
+        .day-image {
+            width: 100px; /* 图片的宽度 */
+            height: 100px; /* 图片的高度 */
+           
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="tm-container">
+        <div>
+            <div class="tm-row pt-4">
+                <div class="tm-col-left">
+                    <div class="tm-site-header media">
+                        <img src="img/logo.png" alt="" style="width: 180px;">
+                    </div>
+                </div>
+                <div class="tm-col-right">
+                    <nav class="navbar navbar-expand-lg">
+                        <button class="navbar-toggler toggler-example mr-0 ml-auto" type="button"
+                            data-toggle="collapse" data-target="#navbar-nav"
+                            aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span><i class="fas fa-bars"></i></span>
+                        </button>
+                    
+                        <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
+                            <ul class="navbar-nav text-uppercase">
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="index.html">首页</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="about.html">快速旅行</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="services.html">定制线路</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link tm-nav-link" href="#">热门线路 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="community.html">出行社区</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="login.html">登录注册</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="tm-row">
+                <div class="tm-col-left"></div>
+                <main class="tm-col-right">
+                    <!-- 行程表内容 -->
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-12">
+                                
+                                <!-- 地图 -->
+
+                                <!-- 行程表 -->
+                                <div id="schedule" class="schedule">
+                                    <!-- 动态生成的行程表内容 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div class="tm-row">
+            <div class="tm-col-left text-center">
+                <ul class="tm-bg-controls-wrapper">
+                    <li class="tm-bg-control active" data-id="0"></li>
+                    <li class="tm-bg-control" data-id="1"></li>
+                    <li class="tm-bg-control" data-id="2"></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Diagonal background design -->
+        <div class="tm-bg">
+            <div class="tm-bg-left"></div>
+            <div class="tm-bg-right"></div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+    <script>
+        const total_dayBudget = 0;//每日的总预算
+        function deleteItem(element) {
+            element.closest('.timeline-item').remove();
+        }
+
+        function gotoIndex() {
+            window.location.href = "index.html";
+        }
+
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const destination = urlParams.get('destination'); // 目的地
+        const duration = 3; // 行程期限
+        const Budget = 1000; // 预算
+        const numOfPeople = 2; // 人数
+        const preference = urlParams.get('preference'); // 用户偏好
+
+        const scheduleContainer = document.getElementById('schedule');
+        const mapIframe = document.getElementById('map-iframe');
+
+        // 定义行程模板生成函数
+        function generateTripTemplate(duration) {
+            const activities = [
+                { time: "07:00", event: "餐食1" },
+                { time: "09:00", event: "项目1" },
+                { time: "12:00", event: "餐食2" },
+                { time: "14:00", event: "项目2" },
+                { time: "18:00", event: "餐食3" },
+            ];
+            return Array.from({ length: duration }, (_, day) => ({
+                day: day + 1,
+                activities: [...activities]
+            }));
+        }
+
+// 根据预算和偏好生成行程
+const selectedTrip = generateTripTemplate(duration);
+console.log("对应的行程模板: " + JSON.stringify(selectedTrip, null, 2));
+
+// 检查参数是否为空
+if (false) {
+    scheduleContainer.innerHTML = `
+        <div class="alert alert-warning text-center" role="alert">
+            您还没有生成旅行计划，<a href="about.html" class="alert-link">点击这里快去生成吧！</a>
+        </div>
+    `;
+    mapIframe.style.display = 'none'; // 隐藏地图
+} else {
+    let scheduleContent = '';
+    const durationNum = parseInt(duration, 10);
+
+// 定义线路名称数组
+const routes = [
+    '音乐节线路',
+    '云南"瓦猫"非遗旅游线路',
+    '大理特色美食线路'
+];
+
+// 动态生成行程表内容
+for (let day = 1; day <= durationNum; day++) {
+    const totalDayBudget = Budget * 0.49; // 每日预算的80%
+    const dayBudget = totalDayBudget; // 每个人的预算
+    console.log("人数：" + numOfPeople);
+
+    // 确保预算分配不会导致负值，并且价格精确到小数点后两位
+    const accommodationPrice = Math.max(dayBudget * 0.12 * numOfPeople, 50).toFixed(2); // 住宿费用，占预算的16%
+    console.log("住宿费用：" + accommodationPrice);
+    const breakfastPrice = Math.min(dayBudget * 0.04 * numOfPeople, 30).toFixed(2); // 早餐价格，固定30
+    console.log("早餐价格：" + breakfastPrice);
+    const lunchPrice = Math.min(dayBudget * 0.1 * numOfPeople, 100).toFixed(2); // 中餐价格，固定50
+    console.log("中餐价格：" + lunchPrice);
+    const dinnerPrice = Math.min(dayBudget * 0.06 * numOfPeople, 50).toFixed(2); // 晚餐价格，固定50
+    console.log("晚餐价格：" + dinnerPrice);
+    const activityPrice = Math.max(0, (dayBudget - accommodationPrice - breakfastPrice - lunchPrice - dinnerPrice) / 2).toFixed(2); // 活动费用
+    console.log("活动费用：" + activityPrice);
+
+    const dailyActivities = selectedTrip[day - 1]?.activities || [];
+
+    // 根据天数选择线路名称
+    const routeName = routes[day - 1] || `默认线路${day}`;
+
+    scheduleContent += `
+    <div class="day">
+        <div class="day-header" >
+        
+            <img src="img/wiringDiagram-${day}.jpg" alt="Day Image" class="day-image">
+            <h3>${routeName}
+                <br>
+                <a href="#">了解更多</a></h3>
+            <br>
+            
+        </div>
+        <div class="timeline">
+            ${dailyActivities.map(activity => {
+                let price;
+                switch (activity.event) {
+                    case "餐食1":
+                    case "餐食2":
+                    case "餐食3":
+                        price = activity.event === "餐食1" ? breakfastPrice :
+                               activity.event === "餐食2" ? lunchPrice : dinnerPrice;
+                        break;
+                    case "住宿":
+                        price = accommodationPrice;
+                        break;
+
+                    default:
+                        price = activityPrice;
+                        break;
+                }
+
+                const isMeal = activity.event.includes("餐食");
+                const options = isMeal ? ["餐食1", "餐食2", "餐食3"] : ["项目1", "项目2", "项目3"];
+
+                return `
+                    
+                `;
+            }).join('')}
+
+            
+`;
+}
+
+// 计算总预算
+const totalBudget = Budget * duration; // 总预算 = 每日预算 × 天数
+let totalSpent = 0; // 总花费预算
+
+// 计算每天的花费预算
+for (let day = 1; day <= durationNum; day++) {
+    const dayBudget = Budget * 0.49; // 每日预算的80%，要留有20%预算
+    const accommodationPrice = dayBudget * 0.12; // 住宿费用，占预算的16%
+    const breakfastPrice = 30; // 早餐价格,固定为30
+    const lunchPrice = 50; // 中餐价格，固定为50
+    const dinnerPrice = 50; // 晚餐价格，固定为50
+    const activityPrice = (dayBudget - accommodationPrice - breakfastPrice - lunchPrice - dinnerPrice) / 2; // 活动费用
+
+    // 每天的总花费
+    const dailySpent = accommodationPrice + breakfastPrice + lunchPrice + dinnerPrice + (activityPrice * 2);
+    totalSpent += dailySpent; // 累加总花费
+}
+
+// 计算留有预算
+const remainingBudget = totalBudget - totalSpent; // 留有预算 = 总预算 - 总花费
+
+// 将预算信息插入到页面中
+scheduleContent += `
+
+`;
+
+scheduleContent += '<button type="button" class="btn btn-light" data-toggle="modal" data-target="#travelModal" onclick="gotoIndex()">提交支付</button>';
+    // 设置地图链接（根据目的地动态生成地图）
+    
+
+    // 将行程表内容插入到页面中
+    scheduleContainer.innerHTML = scheduleContent;
+}
+
+        // 删除项目功能
+        function deleteItem(element) {
+            const timelineItem = element.closest('.timeline-item');
+            if (timelineItem.classList.contains('住宿')) {
+                alert('住宿项目是必须的，不能删除！');
+            } else {
+                timelineItem.remove();
+            }
+        }
+
+        // 保存行程功能
+        document.querySelector('.save-button').addEventListener('click', () => {
+            const scheduleData = [];
+            document.querySelectorAll('.day').forEach(day => {
+                const dayData = {
+                    day: day.querySelector('h3').textContent,
+                    items: []
+                };
+                day.querySelectorAll('.timeline-item').forEach(item => {
+                    const time = item.querySelector('.meal').textContent.trim();
+                    const event = item.querySelector('.event').value.trim();
+                    const price = item.querySelector('.price').textContent.trim();
+                    dayData.items.push({ time, event, price });
+                });
+                scheduleData.push(dayData);
+            });
+            console.log(scheduleData); // 可以将数据保存到本地存储或发送到服务器
+        });
+    </script>
+</body>
+</html>

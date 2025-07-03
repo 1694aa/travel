@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vamos</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="css/templatemo-diagoona.css" rel="stylesheet" />
+    <style>
+        /* 确保导航栏始终处于最顶层 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tm-col-right {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .tm-container {
+            padding-top: 70px;
+        }
+
+        .list-group-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+
+
+        .list-group-item {
+            width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .list-group-item h5,
+        .list-group-item p {
+            max-width: 100%;
+            white-space: normal;
+        }
+
+
+
+        /* 热门帖子模块自适应宽度 */
+        #hotPosts {
+            width: 100%;
+
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .col-md-8 {
+                width: 100%;
+            }
+        }
+
+
+        /* 热门帖子模块样式 */
+        #hotPosts {
+            background-color: rgba(255, 255, 255, 0.1);
+            /* 半透明白色底纹 */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* 半透明白色边框 */
+            border-radius: 8px;
+            /* 圆角 */
+            padding: 15px;
+            /* 内边距 */
+            margin-bottom: 20px;
+            /* 底部外边距 */
+        }
+
+        #hotPosts .list-group-item {
+            background-color: transparent;
+            /* 每个帖子项的背景透明 */
+            color: white;
+            /* 字体颜色为白色 */
+            border: none;
+            /* 移除边框 */
+            margin-bottom: 10px;
+            /* 帖子项之间的间距 */
+            border-radius: 8px;
+            /* 圆角 */
+            padding: 10px;
+            /* 内边距 */
+        }
+
+        #hotPosts .list-group-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            /* 鼠标悬停时的半透明背景 */
+        }
+
+        #hotPosts .list-group-item h5,
+        #hotPosts .list-group-item p,
+        #hotPosts .list-group-item small {
+            color: white;
+            /* 标题、内容和时间戳的字体颜色为白色 */
+        }
+
+        /* 用户社交照片模块样式 */
+
+ 
+
+        /* 活跃用户模块样式 */
+        #activeUsers {
+            background-color: rgba(255, 255, 255, 0.1);
+            /* 半透明白色底纹 */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* 半透明白色边框 */
+            border-radius: 8px;
+            /* 圆角 */
+            padding: 15px;
+            /* 内边距 */
+            margin-bottom: 20px;
+            /* 底部外边距 */
+        }
+
+        #activeUsers .list-group-item {
+            background-color: transparent;
+            /* 每个用户项的背景透明 */
+            color: white;
+            /* 字体颜色为白色 */
+            border: none;
+            /* 移除边框 */
+            margin-bottom: 10px;
+            /* 用户项之间的间距 */
+            border-radius: 8px;
+            /* 圆角 */
+            padding: 10px;
+            /* 内边距 */
+        }
+
+        #activeUsers .list-group-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            /* 鼠标悬停时的半透明背景 */
+        }
+
+        /*ins样式*/
+        #socialPhotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.social-photo-item {
+    width: 100%; /* 宽度自适应 */
+    height: auto; /* 高度自动 */
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    padding: 2px; /* 缩小内边距 */
+    margin: 2px; /* 缩小外边距 */
+}
+
+.social-photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: filter 0.3s ease;
+}
+
+.social-photo-item:hover img {
+    filter: brightness(0.8);
+}
+
+.social-photo-item:hover {
+    transform: scale(1.02);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-photo-item:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-overlay i {
+    font-size: 18px;
+    color: white;
+}
+
+/* 增加移动端响应式设计 */
+@media (max-width: 768px) {
+    .social-photo-item {
+        width: 100%; /* 在小屏幕上设置为全宽 */
+        height: 100%; /* 设置一个较大的高度 */
+        margin: 2px auto; /* 居中显示并增加间距 */
+    }
+
+    #socialPhotos {
+        gap: 1px; /* 减小间距以适应移动端 */
+        justify-content: center;
+        padding: 0%;
+    }
+    .col-5{
+        padding: 0%;
+    }
+}
+
+@media (min-width: 768px) {
+    .social-photo-item {
+        width: 200px; /* 在大屏幕上设置较大的宽度 */
+        height: 150px; /* 长方形高度 */
+        padding: 2px; /* 缩小内边距 */
+    }
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 4px; /* 修改内边距为更小的值 */
+}
+
+.social-photo-item:hover .photo-overlay {
+    opacity: 1;
+}
+    </style>
+</head>
+
+<body>
+    <div class="adcenter">
+        <script src="http://www.mobancss.com/include/new/ggad2_728x90.js"></script>
+    </div>
+    <div class="tm-container">
+        <div>
+            <div class="tm-row pt-4">
+                <div class="tm-col-left">
+                    <div class="tm-site-header media">
+                        <img src="img/logo.png" alt="" style="width: 180px;">
+                    </div>
+                </div>
+                <div class="tm-col-right">
+                    <nav class="navbar navbar-expand-lg" id="tm-main-nav">
+                        <button class="navbar-toggler toggler-example mr-0 ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span><i class="fas fa-bars"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
+                            <ul class="navbar-nav text-uppercase">
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="index.html">首页</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="about.html">快速旅行</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="services.html">定制线路</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="contact.html">热门线路</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link tm-nav-link" href="#">出行社区 <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="login.html">登录注册</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="tm-row">
+                <div class="tm-col-left"></div>
+                <main class="tm-col-right">
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="请输入要搜索的帖子"
+                                        aria-label="搜索" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary" type="button" id="searchButton"
+                                        style="color: white;">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary mr-2">搭子匹配</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#postModal">发帖</button>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h2 class="text-center mb-4">热门帖子</h2>
+                                <div class="list-group" id="hotPosts">
+                                    <!-- 动态加载热门帖子 -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 用户社交照片模块 -->
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                
+                                <div class="row" id="socialPhotos">
+                                    <!-- 动态加载用户社交照片 -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 活跃用户模块 -->
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h2 class="text-center mb-4">活跃用户</h2>
+                                <div class="list-group" id="activeUsers">
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <img src="img/header_1.jpg" alt="用户1" class="img-fluid rounded-circle mr-2"
+                                            style="width: 50px; height: 50px;">
+                                        用户名1
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <img src="img/header_2.jpg" alt="用户2" class="img-fluid rounded-circle mr-2"
+                                            style="width: 50px; height: 50px;">
+                                        用户名2
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 发帖模态框 -->
+                    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="postModalLabel" style="color: black;">发帖</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="postForm">
+                                        <div class="form-group">
+                                            <label for="postTitle" style="color: black;">帖子标题</label>
+                                            <input type="text" class="form-control" id="postTitle" style="color: black;"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="postContent" style="color: black;">帖子内容</label>
+                                            <textarea class="form-control" id="postContent" rows="3"
+                                                style="color: black;" required></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        style="color: black;">取消</button>
+                                    <button type="button" class="btn btn-primary" onclick="submitPost()"
+                                        style="color: black;">发布</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div class="tm-row">
+            <div class="tm-col-left text-center">
+                <ul class="tm-bg-controls-wrapper">
+                    <li class="tm-bg-control active" data-id="0"></li>
+                    <li class="tm-bg-control" data-id="1"></li>
+                    <li class="tm-bg-control" data-id="2"></li>
+                </ul>
+            </div>
+            <div class="tm-col-right tm-col-footer">
+
+            </div>
+        </div>
+
+        <!-- Diagonal background design -->
+        <div class="tm-bg">
+            <div class="tm-bg-left"></div>
+            <div class="tm-bg-right"></div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+    <script>
+        // 模拟存储帖子数据的数组
+        let posts = [
+            {
+                title: "这是一个帖子标题",
+                content: "这是一个帖子内容摘要",
+                timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toLocaleString() // 3天前
+            },
+            {
+                title: "这是另一个帖子标题",
+                content: "这是另一个帖子内容摘要。",
+                timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toLocaleString() // 2天前
+            }
+        ];
+
+        function matchBuddies() {
+            alert("搭子匹配功能尚未实现！");
+        }
+
+        function submitPost() {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+
+            if (title && content) {
+                // 创建帖子对象
+                const post = {
+                    title: title,
+                    content: content,
+                    timestamp: new Date().toLocaleString()
+                };
+
+                // 将帖子添加到数组
+                posts.push(post);
+
+                // 清空表单
+                document.getElementById('postTitle').value = '';
+                document.getElementById('postContent').value = '';
+
+                // 关闭模态框
+                $('#postModal').modal('hide');
+
+                // 更新热门帖子显示
+                updateHotPosts();
+            } else {
+                alert("帖子标题和内容不能为空！");
+            }
+        }
+
+        function updateHotPosts(filteredPosts = posts) {
+            const hotPostsContainer = document.getElementById('hotPosts');
+            hotPostsContainer.innerHTML = ''; // 清空当前内容
+
+            // 动态生成热门帖子列表
+            filteredPosts.forEach((post, index) => {
+                const postItem = document.createElement('a');
+                postItem.href = '#';
+                postItem.className = 'list-group-item list-group-item-action';
+                postItem.innerHTML = `
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">${post.title}</h5>
+                        <small>${post.timestamp}</small>
+                    </div>
+                    <p class="mb-1">${post.content}</p>
+                `;
+                hotPostsContainer.appendChild(postItem);
+            });
+        }
+
+        function searchPosts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchTerm));
+            updateHotPosts(filteredPosts);
+        }
+
+        // 初始化时加载热门帖子
+        document.addEventListener('DOMContentLoaded', () => {
+            updateHotPosts();
+
+            // 添加搜索按钮的点击事件
+            document.getElementById('searchButton').addEventListener('click', searchPosts);
+
+            // 添加搜索框的回车事件
+            document.getElementById('searchInput').addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    searchPosts();
+                }
+            });
+        });
+
+
+        // 用户社交照片数据
+const socialPhotos = [
+    { src: "img/user_community_1.jpg", alt: "用户1" },
+    { src: "img/user_community_2.jpg", alt: "用户2" },
+    { src: "img/user_community_3.jpg", alt: "用户3" },
+    { src: "img/user_community_4.jpg", alt: "用户4" },
+    { src: "img/user_community_5.jpg", alt: "用户5" },
+    { src: "img/user_community_6.jpg", alt: "用户6" },
+    { src: "img/user_community_7.jpg", alt: "用户7" }
+];
+
+function renderSocialPhotos() {
+    const container = document.getElementById("socialPhotos");
+    container.innerHTML = ""; // 清空当前内容
+
+    socialPhotos.forEach((photo, index) => {
+        const photoItem = document.createElement("div");
+        photoItem.className = " col-5 col-sm-6 col-md-4 ";
+        photoItem.innerHTML = `
+            <a href="#" class="social-photo-item">
+                <img src="${photo.src}" alt="${photo.alt}" class="img-fluid rounded" style="aspect-ratio: 9 / 16; object-fit: cover;">
+                <div class="photo-overlay d-flex justify-content-between align-items-center p-2">
+                    <div>
+                        <i class="fas fa-heart text-white mr-2"></i>
+                        <i class="fas fa-comment text-white"></i>
+                    </div>
+                    <div>
+                        <i class="fas fa-share text-white"></i>
+                    </div>
+                </div>
+            </a>
+        `;
+        container.appendChild(photoItem);
+    });
+}
+
+// 在页面加载时渲染照片
+document.addEventListener("DOMContentLoaded", renderSocialPhotos);
+    </script>
+</body>
+
+</html>

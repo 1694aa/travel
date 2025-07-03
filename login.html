@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login & Register</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="css/templatemo-diagoona.css" rel="stylesheet" />
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tm-col-right {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .tm-container {
+            padding-top: 70px;
+        }
+
+        /* 登录注册模块样式 */
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1); /* 半透明白色底纹 */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明白色边框 */
+            border-radius: 8px; /* 圆角 */
+            margin-bottom: 20px; /* 底部外边距 */
+        }
+
+        .auth-container .form-group {
+            margin-bottom: 15px;
+        }
+
+        .auth-container .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: white; /* 字体颜色为白色 */
+        }
+
+        .auth-container .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: transparent; /* 输入框背景透明 */
+            color: white; /* 输入框字体颜色为白色 */
+        }
+
+        .auth-container .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .auth-container .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .auth-container .form-group .toggle-btn {
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="adcenter">
+        <script src="http://www.mobancss.com/include/new/ggad2_728x90.js"></script>
+    </div>
+    <div class="tm-container">
+        <div>
+            <div class="tm-row pt-4">
+                <div class="tm-col-left">
+                    <div class="tm-site-header media">
+                        <img src="img/logo.png" alt="" style="width: 180px;">
+                    </div>
+                </div>
+                <div class="tm-col-right">
+                    <nav class="navbar navbar-expand-lg" id="tm-main-nav">
+                        <button class="navbar-toggler toggler-example mr-0 ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span><i class="fas fa-bars"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
+                            <ul class="navbar-nav text-uppercase">
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="index.html">首页</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="about.html">快速旅行</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="services.html">定制线路</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="contact.html">热门线路</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="community.html">出行社区</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link tm-nav-link" href="#">登录注册 <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="tm-row">
+                <div class="tm-col-left"></div>
+                <main class="tm-col-right">
+                    <div class="auth-container">
+                        <div id="login-form">
+                            <h2 class="text-center">登录</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="login-email">邮箱</label>
+                                    <input type="email" id="login-email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">密码</label>
+                                    <input type="password" id="login-password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" onclick="login()">登录</button>
+                                </div>
+                                <div class="form-group">
+                                    <p class="toggle-btn" onclick="toggleForm()">没有账号？注册新账号</p>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="register-form" style="display: none;">
+                            <h2 class="text-center">注册</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="register-email">邮箱</label>
+                                    <input type="email" id="register-email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-password">密码</label>
+                                    <input type="password" id="register-password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-confirm-password">确认密码</label>
+                                    <input type="password" id="register-confirm-password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" onclick="register()">注册</button>
+                                </div>
+                                <div class="form-group">
+                                    <p class="toggle-btn" onclick="toggleForm()">已有账号？登录</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div class="tm-row">
+            <div class="tm-col-left text-center">
+                <ul class="tm-bg-controls-wrapper">
+                    <li class="tm-bg-control active" data-id="0"></li>
+                    <li class="tm-bg-control" data-id="1"></li>
+                    <li class="tm-bg-control" data-id="2"></li>
+                </ul>
+            </div>
+            <div class="tm-col-right tm-col-footer">
+
+            </div>
+        </div>
+
+        <!-- Diagonal background design -->
+        <div class="tm-bg">
+            <div class="tm-bg-left"></div>
+            <div class="tm-bg-right"></div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+    <script>
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            alert(`登录成功！`);
+        }
+
+        function register() {
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            if (password !== confirmPassword) {
+                alert('密码不一致！');
+                return;
+            }
+            alert(`注册成功！`);
+        }
+    </script>
+</body>
+</html>
